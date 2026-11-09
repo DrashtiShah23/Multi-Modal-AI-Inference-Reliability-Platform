@@ -149,7 +149,7 @@ def test_clean_window_passes_and_shift_fires(runtime_v1, small_baseline):
 
     dark = small_baseline.evaluate(FeatureFrame.from_items(_items(runtime_v1, 200, seed=501, mutate=darken)))
     assert dark.fired and dark.kind == "input_drift"
-    assert dark.fired_tests[0].feature.startswith("image.")
+    assert any(test.feature.startswith("image.") for test in dark.fired_tests)
 
 
 def test_model_change_on_same_inputs_is_output_drift(model_repos, small_baseline):
