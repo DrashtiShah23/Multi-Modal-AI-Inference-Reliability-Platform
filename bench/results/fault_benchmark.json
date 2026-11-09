@@ -1,0 +1,7741 @@
+{
+  "summary": {
+    "window_size": 400,
+    "baseline": {
+      "model": "multimodal",
+      "version": "v1",
+      "window_size": 400,
+      "alpha": 0.01,
+      "threshold": 0.0006690898926216757,
+      "n_reference": 6000,
+      "created_at": 1793938747.7783117,
+      "tests": 18,
+      "calibration": {
+        "null_windows": 1000.0,
+        "null_min_p_median": 0.052039292871771003,
+        "threshold": 0.0006690898926216757,
+        "bonferroni_equivalent": 0.0005555555555555556
+      },
+      "build_seconds": 34.4
+    },
+    "clean_trials": 300,
+    "false_alarms": 0,
+    "false_alarm_rate": 0.0,
+    "false_alarm_rate_95ci": [
+      0.0,
+      0.012643429997735661
+    ],
+    "fault_trials": 330,
+    "detected": 322,
+    "detection_rate": 0.9757575757575757,
+    "detection_rate_95ci": [
+      0.9528997913034724,
+      0.9876660339262172
+    ],
+    "per_fault": [
+      {
+        "fault": "exposure_shift",
+        "description": "camera exposure or white balance regression darkens 10 to 40%",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "input_drift": 30
+        }
+      },
+      {
+        "fault": "sensor_noise",
+        "description": "codec or sensor degradation adds noise",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 29,
+        "detection_rate": 0.9666666666666667,
+        "signals": {
+          "input_drift": 29
+        }
+      },
+      {
+        "fault": "resize_blur",
+        "description": "resize bug downsamples by 2x or 4x and upsamples",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "input_drift": 30
+        }
+      },
+      {
+        "fault": "channel_swap",
+        "description": "client release sends BGR instead of RGB",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 26,
+        "detection_rate": 0.8666666666666667,
+        "signals": {
+          "input_drift": 23,
+          "output_drift": 3
+        }
+      },
+      {
+        "fault": "frozen_frames",
+        "description": "stuck cameras send black, gray or white frames",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "input_drift": 30
+        }
+      },
+      {
+        "fault": "locale_launch",
+        "description": "new locale sends Spanish captions",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "input_drift": 30
+        }
+      },
+      {
+        "fault": "caption_template",
+        "description": "upstream template change wraps captions in boilerplate",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "input_drift": 30
+        }
+      },
+      {
+        "fault": "client_mix",
+        "description": "app release shifts 15 to 40% of traffic to android",
+        "expected_signal": "input_drift",
+        "trials": 30,
+        "detected": 27,
+        "detection_rate": 0.9,
+        "signals": {
+          "input_drift": 27
+        }
+      },
+      {
+        "fault": "schema_break",
+        "description": "SDK sends 48x48 images, FP32 tensors or drops parameters",
+        "expected_signal": "contract",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "contract": 30,
+          "output_drift": 1
+        }
+      },
+      {
+        "fault": "output_corruption",
+        "description": "post-processing drops normalization or emits NaN",
+        "expected_signal": "contract",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "contract": 30,
+          "output_drift": 1
+        }
+      },
+      {
+        "fault": "bad_replica",
+        "description": "some replicas serve the BGR-regressed build",
+        "expected_signal": "output_drift",
+        "trials": 30,
+        "detected": 30,
+        "detection_rate": 1.0,
+        "signals": {
+          "output_drift": 30
+        }
+      }
+    ],
+    "mean_trial_seconds": 0.4303004072301519
+  },
+  "trials": [
+    {
+      "fault": "clean",
+      "trial": 0,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5973395759997402
+    },
+    {
+      "fault": "clean",
+      "trial": 1,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4344985269999597
+    },
+    {
+      "fault": "clean",
+      "trial": 2,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3804020769998715
+    },
+    {
+      "fault": "clean",
+      "trial": 3,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37332636500013905
+    },
+    {
+      "fault": "clean",
+      "trial": 4,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.46135127500019735
+    },
+    {
+      "fault": "clean",
+      "trial": 5,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36675909899986436
+    },
+    {
+      "fault": "clean",
+      "trial": 6,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37973394700020435
+    },
+    {
+      "fault": "clean",
+      "trial": 7,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.41516610300004686
+    },
+    {
+      "fault": "clean",
+      "trial": 8,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5681550180001977
+    },
+    {
+      "fault": "clean",
+      "trial": 9,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4351871779999783
+    },
+    {
+      "fault": "clean",
+      "trial": 10,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37253704600016135
+    },
+    {
+      "fault": "clean",
+      "trial": 11,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3692499069998121
+    },
+    {
+      "fault": "clean",
+      "trial": 12,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.45780297200008135
+    },
+    {
+      "fault": "clean",
+      "trial": 13,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37060475399994175
+    },
+    {
+      "fault": "clean",
+      "trial": 14,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37381805599989093
+    },
+    {
+      "fault": "clean",
+      "trial": 15,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3801823170001626
+    },
+    {
+      "fault": "clean",
+      "trial": 16,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37623625099968194
+    },
+    {
+      "fault": "clean",
+      "trial": 17,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.43876633899981243
+    },
+    {
+      "fault": "clean",
+      "trial": 18,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37051412299979347
+    },
+    {
+      "fault": "clean",
+      "trial": 19,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37004396600013933
+    },
+    {
+      "fault": "clean",
+      "trial": 20,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3692003810001552
+    },
+    {
+      "fault": "clean",
+      "trial": 21,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3749954259997139
+    },
+    {
+      "fault": "clean",
+      "trial": 22,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37669835799988505
+    },
+    {
+      "fault": "clean",
+      "trial": 23,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3844392920000246
+    },
+    {
+      "fault": "clean",
+      "trial": 24,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38437345900001674
+    },
+    {
+      "fault": "clean",
+      "trial": 25,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4474419609996403
+    },
+    {
+      "fault": "clean",
+      "trial": 26,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38529322899967156
+    },
+    {
+      "fault": "clean",
+      "trial": 27,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.40001727200024106
+    },
+    {
+      "fault": "clean",
+      "trial": 28,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3894747740000639
+    },
+    {
+      "fault": "clean",
+      "trial": 29,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37135642700013705
+    },
+    {
+      "fault": "clean",
+      "trial": 30,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4252517950003494
+    },
+    {
+      "fault": "clean",
+      "trial": 31,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3726309549997495
+    },
+    {
+      "fault": "clean",
+      "trial": 32,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3725309249998645
+    },
+    {
+      "fault": "clean",
+      "trial": 33,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.378250067999943
+    },
+    {
+      "fault": "clean",
+      "trial": 34,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38034507299971665
+    },
+    {
+      "fault": "clean",
+      "trial": 35,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3765482170001633
+    },
+    {
+      "fault": "clean",
+      "trial": 36,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3774063649998425
+    },
+    {
+      "fault": "clean",
+      "trial": 37,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3808683600000222
+    },
+    {
+      "fault": "clean",
+      "trial": 38,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3740303939998739
+    },
+    {
+      "fault": "clean",
+      "trial": 39,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37107493400026215
+    },
+    {
+      "fault": "clean",
+      "trial": 40,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39130944399994405
+    },
+    {
+      "fault": "clean",
+      "trial": 41,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38336752199984403
+    },
+    {
+      "fault": "clean",
+      "trial": 42,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.40008279699986815
+    },
+    {
+      "fault": "clean",
+      "trial": 43,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37459257300042736
+    },
+    {
+      "fault": "clean",
+      "trial": 44,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3779441950000546
+    },
+    {
+      "fault": "clean",
+      "trial": 45,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3724227739999151
+    },
+    {
+      "fault": "clean",
+      "trial": 46,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37704321799992613
+    },
+    {
+      "fault": "clean",
+      "trial": 47,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36943987899985586
+    },
+    {
+      "fault": "clean",
+      "trial": 48,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.373506322999674
+    },
+    {
+      "fault": "clean",
+      "trial": 49,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3702623730000596
+    },
+    {
+      "fault": "clean",
+      "trial": 50,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36781743000028655
+    },
+    {
+      "fault": "clean",
+      "trial": 51,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37423342500005674
+    },
+    {
+      "fault": "clean",
+      "trial": 52,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36977017400022305
+    },
+    {
+      "fault": "clean",
+      "trial": 53,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37125020700023015
+    },
+    {
+      "fault": "clean",
+      "trial": 54,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3697252660003869
+    },
+    {
+      "fault": "clean",
+      "trial": 55,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3698554170000534
+    },
+    {
+      "fault": "clean",
+      "trial": 56,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3835864530001345
+    },
+    {
+      "fault": "clean",
+      "trial": 57,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3685781720000705
+    },
+    {
+      "fault": "clean",
+      "trial": 58,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3777685609998116
+    },
+    {
+      "fault": "clean",
+      "trial": 59,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37429767699995864
+    },
+    {
+      "fault": "clean",
+      "trial": 60,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3673363220000283
+    },
+    {
+      "fault": "clean",
+      "trial": 61,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.376198691999889
+    },
+    {
+      "fault": "clean",
+      "trial": 62,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37499364799987234
+    },
+    {
+      "fault": "clean",
+      "trial": 63,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3743994120000025
+    },
+    {
+      "fault": "clean",
+      "trial": 64,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3621315420000428
+    },
+    {
+      "fault": "clean",
+      "trial": 65,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39110418799964464
+    },
+    {
+      "fault": "clean",
+      "trial": 66,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36493491699957303
+    },
+    {
+      "fault": "clean",
+      "trial": 67,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37526366500014774
+    },
+    {
+      "fault": "clean",
+      "trial": 68,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35595671100008985
+    },
+    {
+      "fault": "clean",
+      "trial": 69,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3570526849998714
+    },
+    {
+      "fault": "clean",
+      "trial": 70,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35870445899990955
+    },
+    {
+      "fault": "clean",
+      "trial": 71,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36000616000001173
+    },
+    {
+      "fault": "clean",
+      "trial": 72,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3801640600004248
+    },
+    {
+      "fault": "clean",
+      "trial": 73,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39845500600040396
+    },
+    {
+      "fault": "clean",
+      "trial": 74,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39019122700028674
+    },
+    {
+      "fault": "clean",
+      "trial": 75,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.367978003999724
+    },
+    {
+      "fault": "clean",
+      "trial": 76,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36810580300016227
+    },
+    {
+      "fault": "clean",
+      "trial": 77,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38091128299993215
+    },
+    {
+      "fault": "clean",
+      "trial": 78,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36273185400023067
+    },
+    {
+      "fault": "clean",
+      "trial": 79,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37815787799991085
+    },
+    {
+      "fault": "clean",
+      "trial": 80,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3603217649997532
+    },
+    {
+      "fault": "clean",
+      "trial": 81,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3637876109996796
+    },
+    {
+      "fault": "clean",
+      "trial": 82,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.374850719999813
+    },
+    {
+      "fault": "clean",
+      "trial": 83,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.358558740999797
+    },
+    {
+      "fault": "clean",
+      "trial": 84,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37879772899987074
+    },
+    {
+      "fault": "clean",
+      "trial": 85,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37289633499995034
+    },
+    {
+      "fault": "clean",
+      "trial": 86,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.370662073999938
+    },
+    {
+      "fault": "clean",
+      "trial": 87,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38966835800010813
+    },
+    {
+      "fault": "clean",
+      "trial": 88,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3722768839998025
+    },
+    {
+      "fault": "clean",
+      "trial": 89,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36172238499966625
+    },
+    {
+      "fault": "clean",
+      "trial": 90,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36012534299970866
+    },
+    {
+      "fault": "clean",
+      "trial": 91,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3726267619999817
+    },
+    {
+      "fault": "clean",
+      "trial": 92,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.41163738699970054
+    },
+    {
+      "fault": "clean",
+      "trial": 93,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39641407099998105
+    },
+    {
+      "fault": "clean",
+      "trial": 94,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36960405700028787
+    },
+    {
+      "fault": "clean",
+      "trial": 95,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36487701099986225
+    },
+    {
+      "fault": "clean",
+      "trial": 96,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36873515600018436
+    },
+    {
+      "fault": "clean",
+      "trial": 97,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3688951129997804
+    },
+    {
+      "fault": "clean",
+      "trial": 98,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37335609199999453
+    },
+    {
+      "fault": "clean",
+      "trial": 99,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3665649280001162
+    },
+    {
+      "fault": "clean",
+      "trial": 100,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36857092500031285
+    },
+    {
+      "fault": "clean",
+      "trial": 101,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36533621599983235
+    },
+    {
+      "fault": "clean",
+      "trial": 102,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3669946759996492
+    },
+    {
+      "fault": "clean",
+      "trial": 103,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36549497599980896
+    },
+    {
+      "fault": "clean",
+      "trial": 104,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3706066479999208
+    },
+    {
+      "fault": "clean",
+      "trial": 105,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37112320999995063
+    },
+    {
+      "fault": "clean",
+      "trial": 106,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3757007809999777
+    },
+    {
+      "fault": "clean",
+      "trial": 107,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37689661199965485
+    },
+    {
+      "fault": "clean",
+      "trial": 108,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37360306499977014
+    },
+    {
+      "fault": "clean",
+      "trial": 109,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36739962800038484
+    },
+    {
+      "fault": "clean",
+      "trial": 110,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36532639500001096
+    },
+    {
+      "fault": "clean",
+      "trial": 111,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3681321849999222
+    },
+    {
+      "fault": "clean",
+      "trial": 112,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35957425500009776
+    },
+    {
+      "fault": "clean",
+      "trial": 113,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36272233799991227
+    },
+    {
+      "fault": "clean",
+      "trial": 114,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3892245960000764
+    },
+    {
+      "fault": "clean",
+      "trial": 115,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4539687579999736
+    },
+    {
+      "fault": "clean",
+      "trial": 116,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3725460620003105
+    },
+    {
+      "fault": "clean",
+      "trial": 117,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38147755099998903
+    },
+    {
+      "fault": "clean",
+      "trial": 118,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.40485094499990737
+    },
+    {
+      "fault": "clean",
+      "trial": 119,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.384870303000298
+    },
+    {
+      "fault": "clean",
+      "trial": 120,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36893289199997525
+    },
+    {
+      "fault": "clean",
+      "trial": 121,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3647154939999382
+    },
+    {
+      "fault": "clean",
+      "trial": 122,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3639365680000992
+    },
+    {
+      "fault": "clean",
+      "trial": 123,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3572013500001958
+    },
+    {
+      "fault": "clean",
+      "trial": 124,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3615632169999117
+    },
+    {
+      "fault": "clean",
+      "trial": 125,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3652195249997021
+    },
+    {
+      "fault": "clean",
+      "trial": 126,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37201706300038495
+    },
+    {
+      "fault": "clean",
+      "trial": 127,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37062053199997536
+    },
+    {
+      "fault": "clean",
+      "trial": 128,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3666611160001594
+    },
+    {
+      "fault": "clean",
+      "trial": 129,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4030280470001344
+    },
+    {
+      "fault": "clean",
+      "trial": 130,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3785983750003652
+    },
+    {
+      "fault": "clean",
+      "trial": 131,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37670242400008647
+    },
+    {
+      "fault": "clean",
+      "trial": 132,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38220207799986383
+    },
+    {
+      "fault": "clean",
+      "trial": 133,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37801047699986157
+    },
+    {
+      "fault": "clean",
+      "trial": 134,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.42331472700016093
+    },
+    {
+      "fault": "clean",
+      "trial": 135,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4140454469998076
+    },
+    {
+      "fault": "clean",
+      "trial": 136,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38077504800003226
+    },
+    {
+      "fault": "clean",
+      "trial": 137,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.409818555000129
+    },
+    {
+      "fault": "clean",
+      "trial": 138,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3988624100002198
+    },
+    {
+      "fault": "clean",
+      "trial": 139,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4101059190002161
+    },
+    {
+      "fault": "clean",
+      "trial": 140,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3919100680000156
+    },
+    {
+      "fault": "clean",
+      "trial": 141,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3794231410001885
+    },
+    {
+      "fault": "clean",
+      "trial": 142,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39903670300009253
+    },
+    {
+      "fault": "clean",
+      "trial": 143,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.399399368000104
+    },
+    {
+      "fault": "clean",
+      "trial": 144,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4103002980000383
+    },
+    {
+      "fault": "clean",
+      "trial": 145,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4082544779998898
+    },
+    {
+      "fault": "clean",
+      "trial": 146,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3866911669997535
+    },
+    {
+      "fault": "clean",
+      "trial": 147,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39227826299975277
+    },
+    {
+      "fault": "clean",
+      "trial": 148,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37608078299990666
+    },
+    {
+      "fault": "clean",
+      "trial": 149,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37508494999974573
+    },
+    {
+      "fault": "clean",
+      "trial": 150,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.378532775000167
+    },
+    {
+      "fault": "clean",
+      "trial": 151,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.376122457999827
+    },
+    {
+      "fault": "clean",
+      "trial": 152,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3821157590000439
+    },
+    {
+      "fault": "clean",
+      "trial": 153,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.41085076600029424
+    },
+    {
+      "fault": "clean",
+      "trial": 154,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3718840930000624
+    },
+    {
+      "fault": "clean",
+      "trial": 155,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3782034230002864
+    },
+    {
+      "fault": "clean",
+      "trial": 156,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3746899609996035
+    },
+    {
+      "fault": "clean",
+      "trial": 157,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37193099100022664
+    },
+    {
+      "fault": "clean",
+      "trial": 158,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3710653299999649
+    },
+    {
+      "fault": "clean",
+      "trial": 159,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38004389400020955
+    },
+    {
+      "fault": "clean",
+      "trial": 160,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3763895450001655
+    },
+    {
+      "fault": "clean",
+      "trial": 161,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37802591199988456
+    },
+    {
+      "fault": "clean",
+      "trial": 162,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3705098509999516
+    },
+    {
+      "fault": "clean",
+      "trial": 163,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.368628813000214
+    },
+    {
+      "fault": "clean",
+      "trial": 164,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36839906699970015
+    },
+    {
+      "fault": "clean",
+      "trial": 165,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38426623299983476
+    },
+    {
+      "fault": "clean",
+      "trial": 166,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37055473999998867
+    },
+    {
+      "fault": "clean",
+      "trial": 167,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4004130109997277
+    },
+    {
+      "fault": "clean",
+      "trial": 168,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3729495420002422
+    },
+    {
+      "fault": "clean",
+      "trial": 169,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36928337999961514
+    },
+    {
+      "fault": "clean",
+      "trial": 170,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3747537569997803
+    },
+    {
+      "fault": "clean",
+      "trial": 171,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36974393099990266
+    },
+    {
+      "fault": "clean",
+      "trial": 172,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3774662400001034
+    },
+    {
+      "fault": "clean",
+      "trial": 173,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3718884929999149
+    },
+    {
+      "fault": "clean",
+      "trial": 174,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3731719359998351
+    },
+    {
+      "fault": "clean",
+      "trial": 175,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37807688200018674
+    },
+    {
+      "fault": "clean",
+      "trial": 176,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39007732300024145
+    },
+    {
+      "fault": "clean",
+      "trial": 177,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3811969179996595
+    },
+    {
+      "fault": "clean",
+      "trial": 178,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37666665400001875
+    },
+    {
+      "fault": "clean",
+      "trial": 179,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38290690099984204
+    },
+    {
+      "fault": "clean",
+      "trial": 180,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3875830649999443
+    },
+    {
+      "fault": "clean",
+      "trial": 181,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3792226479999954
+    },
+    {
+      "fault": "clean",
+      "trial": 182,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3762008130001959
+    },
+    {
+      "fault": "clean",
+      "trial": 183,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3790601969999443
+    },
+    {
+      "fault": "clean",
+      "trial": 184,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38210981299971536
+    },
+    {
+      "fault": "clean",
+      "trial": 185,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3824723749999066
+    },
+    {
+      "fault": "clean",
+      "trial": 186,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37382311400006074
+    },
+    {
+      "fault": "clean",
+      "trial": 187,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36908564799978194
+    },
+    {
+      "fault": "clean",
+      "trial": 188,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37228015799973946
+    },
+    {
+      "fault": "clean",
+      "trial": 189,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3692607269999826
+    },
+    {
+      "fault": "clean",
+      "trial": 190,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3678548409998257
+    },
+    {
+      "fault": "clean",
+      "trial": 191,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37274623399980555
+    },
+    {
+      "fault": "clean",
+      "trial": 192,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3760155869999835
+    },
+    {
+      "fault": "clean",
+      "trial": 193,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3820702970001548
+    },
+    {
+      "fault": "clean",
+      "trial": 194,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4749343560001762
+    },
+    {
+      "fault": "clean",
+      "trial": 195,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4061141070001213
+    },
+    {
+      "fault": "clean",
+      "trial": 196,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37245662399982393
+    },
+    {
+      "fault": "clean",
+      "trial": 197,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3749759809998068
+    },
+    {
+      "fault": "clean",
+      "trial": 198,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3766362689998459
+    },
+    {
+      "fault": "clean",
+      "trial": 199,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39267036599994753
+    },
+    {
+      "fault": "clean",
+      "trial": 200,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37861047400019743
+    },
+    {
+      "fault": "clean",
+      "trial": 201,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3722719170000346
+    },
+    {
+      "fault": "clean",
+      "trial": 202,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.45837038000036046
+    },
+    {
+      "fault": "clean",
+      "trial": 203,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3822191459998976
+    },
+    {
+      "fault": "clean",
+      "trial": 204,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37910434100012935
+    },
+    {
+      "fault": "clean",
+      "trial": 205,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3709371820000342
+    },
+    {
+      "fault": "clean",
+      "trial": 206,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3808359490003568
+    },
+    {
+      "fault": "clean",
+      "trial": 207,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38787430999991557
+    },
+    {
+      "fault": "clean",
+      "trial": 208,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4797297069999331
+    },
+    {
+      "fault": "clean",
+      "trial": 209,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3720633720004116
+    },
+    {
+      "fault": "clean",
+      "trial": 210,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37693423299970163
+    },
+    {
+      "fault": "clean",
+      "trial": 211,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.372179153000161
+    },
+    {
+      "fault": "clean",
+      "trial": 212,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39063871799999106
+    },
+    {
+      "fault": "clean",
+      "trial": 213,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37516062500026237
+    },
+    {
+      "fault": "clean",
+      "trial": 214,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.42338848600002166
+    },
+    {
+      "fault": "clean",
+      "trial": 215,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3935823859997072
+    },
+    {
+      "fault": "clean",
+      "trial": 216,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3779911709998487
+    },
+    {
+      "fault": "clean",
+      "trial": 217,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3714649069997904
+    },
+    {
+      "fault": "clean",
+      "trial": 218,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37391598800013526
+    },
+    {
+      "fault": "clean",
+      "trial": 219,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3770168480000393
+    },
+    {
+      "fault": "clean",
+      "trial": 220,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39566630200033615
+    },
+    {
+      "fault": "clean",
+      "trial": 221,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37286849400015853
+    },
+    {
+      "fault": "clean",
+      "trial": 222,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37328982899998664
+    },
+    {
+      "fault": "clean",
+      "trial": 223,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37450992999993105
+    },
+    {
+      "fault": "clean",
+      "trial": 224,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.372878910000054
+    },
+    {
+      "fault": "clean",
+      "trial": 225,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3823333410000487
+    },
+    {
+      "fault": "clean",
+      "trial": 226,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3654045620000943
+    },
+    {
+      "fault": "clean",
+      "trial": 227,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3708040799997434
+    },
+    {
+      "fault": "clean",
+      "trial": 228,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36867041400000744
+    },
+    {
+      "fault": "clean",
+      "trial": 229,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3687250549996861
+    },
+    {
+      "fault": "clean",
+      "trial": 230,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36795254699973157
+    },
+    {
+      "fault": "clean",
+      "trial": 231,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37502286199969603
+    },
+    {
+      "fault": "clean",
+      "trial": 232,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37798837700029253
+    },
+    {
+      "fault": "clean",
+      "trial": 233,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38950329999988753
+    },
+    {
+      "fault": "clean",
+      "trial": 234,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3736236889999418
+    },
+    {
+      "fault": "clean",
+      "trial": 235,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38155639099977634
+    },
+    {
+      "fault": "clean",
+      "trial": 236,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37424767399988923
+    },
+    {
+      "fault": "clean",
+      "trial": 237,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3717686869999852
+    },
+    {
+      "fault": "clean",
+      "trial": 238,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3691325740001048
+    },
+    {
+      "fault": "clean",
+      "trial": 239,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36704079799983447
+    },
+    {
+      "fault": "clean",
+      "trial": 240,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.369693470999664
+    },
+    {
+      "fault": "clean",
+      "trial": 241,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3630639200000587
+    },
+    {
+      "fault": "clean",
+      "trial": 242,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3707744769999408
+    },
+    {
+      "fault": "clean",
+      "trial": 243,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3664533239998491
+    },
+    {
+      "fault": "clean",
+      "trial": 244,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3679975159998321
+    },
+    {
+      "fault": "clean",
+      "trial": 245,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38089578199969765
+    },
+    {
+      "fault": "clean",
+      "trial": 246,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3903243790000488
+    },
+    {
+      "fault": "clean",
+      "trial": 247,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36680075499998566
+    },
+    {
+      "fault": "clean",
+      "trial": 248,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3622046450000198
+    },
+    {
+      "fault": "clean",
+      "trial": 249,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36635311300005924
+    },
+    {
+      "fault": "clean",
+      "trial": 250,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3730230680002933
+    },
+    {
+      "fault": "clean",
+      "trial": 251,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36729945700017197
+    },
+    {
+      "fault": "clean",
+      "trial": 252,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37081686200008335
+    },
+    {
+      "fault": "clean",
+      "trial": 253,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3669229349998204
+    },
+    {
+      "fault": "clean",
+      "trial": 254,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37429260299995804
+    },
+    {
+      "fault": "clean",
+      "trial": 255,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36928732499973194
+    },
+    {
+      "fault": "clean",
+      "trial": 256,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3590418320000026
+    },
+    {
+      "fault": "clean",
+      "trial": 257,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35955247100037013
+    },
+    {
+      "fault": "clean",
+      "trial": 258,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36273952300007295
+    },
+    {
+      "fault": "clean",
+      "trial": 259,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35775782899963815
+    },
+    {
+      "fault": "clean",
+      "trial": 260,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35479068200038455
+    },
+    {
+      "fault": "clean",
+      "trial": 261,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3610782199998539
+    },
+    {
+      "fault": "clean",
+      "trial": 262,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3631564310003341
+    },
+    {
+      "fault": "clean",
+      "trial": 263,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36064528099996096
+    },
+    {
+      "fault": "clean",
+      "trial": 264,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3710097799998948
+    },
+    {
+      "fault": "clean",
+      "trial": 265,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35310142000025735
+    },
+    {
+      "fault": "clean",
+      "trial": 266,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35569498899985774
+    },
+    {
+      "fault": "clean",
+      "trial": 267,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3564742850003313
+    },
+    {
+      "fault": "clean",
+      "trial": 268,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35645695099992736
+    },
+    {
+      "fault": "clean",
+      "trial": 269,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3533569719998013
+    },
+    {
+      "fault": "clean",
+      "trial": 270,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36254528299969024
+    },
+    {
+      "fault": "clean",
+      "trial": 271,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36829151699976137
+    },
+    {
+      "fault": "clean",
+      "trial": 272,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3677916209999239
+    },
+    {
+      "fault": "clean",
+      "trial": 273,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3555734509996
+    },
+    {
+      "fault": "clean",
+      "trial": 274,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36656424299962964
+    },
+    {
+      "fault": "clean",
+      "trial": 275,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35957654300000286
+    },
+    {
+      "fault": "clean",
+      "trial": 276,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3661815310001657
+    },
+    {
+      "fault": "clean",
+      "trial": 277,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38978919700002734
+    },
+    {
+      "fault": "clean",
+      "trial": 278,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37709641900028146
+    },
+    {
+      "fault": "clean",
+      "trial": 279,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.371567701999993
+    },
+    {
+      "fault": "clean",
+      "trial": 280,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36113332900004025
+    },
+    {
+      "fault": "clean",
+      "trial": 281,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3546994230000564
+    },
+    {
+      "fault": "clean",
+      "trial": 282,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3583874319997449
+    },
+    {
+      "fault": "clean",
+      "trial": 283,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3602934630002892
+    },
+    {
+      "fault": "clean",
+      "trial": 284,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3650620580001487
+    },
+    {
+      "fault": "clean",
+      "trial": 285,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38228844100012793
+    },
+    {
+      "fault": "clean",
+      "trial": 286,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3622361259999707
+    },
+    {
+      "fault": "clean",
+      "trial": 287,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36763896399997975
+    },
+    {
+      "fault": "clean",
+      "trial": 288,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37158130799980427
+    },
+    {
+      "fault": "clean",
+      "trial": 289,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3647134970001389
+    },
+    {
+      "fault": "clean",
+      "trial": 290,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36193683400006194
+    },
+    {
+      "fault": "clean",
+      "trial": 291,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36613174800004344
+    },
+    {
+      "fault": "clean",
+      "trial": 292,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36714194500018493
+    },
+    {
+      "fault": "clean",
+      "trial": 293,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37737855099976514
+    },
+    {
+      "fault": "clean",
+      "trial": 294,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37422097999979087
+    },
+    {
+      "fault": "clean",
+      "trial": 295,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3803519440002674
+    },
+    {
+      "fault": "clean",
+      "trial": 296,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3681147030001739
+    },
+    {
+      "fault": "clean",
+      "trial": 297,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36715274300013334
+    },
+    {
+      "fault": "clean",
+      "trial": 298,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36988967700017383
+    },
+    {
+      "fault": "clean",
+      "trial": 299,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36288160599997354
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.371011155999895
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3739953270001024
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3738786280000568
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37617279599999165
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3723207199996068
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3779450170000018
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3774536559999433
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3800054110001838
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3785377580002205
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3881125399998382
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37807217499994294
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3790730169998824
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3768408480000289
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38187876199981474
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3872740960000556
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3736960050000562
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37279152300015994
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3739395279999371
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37181887700035077
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37785852099978
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3737425720000829
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3698202170003242
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37487779799994314
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3621185649999461
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3655565779999961
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3728605480000624
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37000301199987007
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36834224999984144
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37028969799985134
+    },
+    {
+      "fault": "exposure_shift",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3678639429999748
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4576670350002132
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4089562169997407
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.43920908699965366
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4369545339995966
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4240006899999571
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 5,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.42266414999994595
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.42465713799992955
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4547760450000169
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.408815907999724
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.40873212300039086
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4215395480000552
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.44909613800018633
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.44320143100003406
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.46146596399967166
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.42920161100028054
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4200617480000801
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.42136577400015085
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4570247249998829
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.44900990799987994
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4068920879999496
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.45148018399959255
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4524245490001704
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.41437251400020614
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3936908159998893
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.41797066200024346
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4457423479998397
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4146987479998643
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4776559910001197
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4342371039997488
+    },
+    {
+      "fault": "sensor_noise",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4651760820001982
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38559100499969645
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.42731706599988684
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38930982900001254
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.40237291599987657
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4164086349996978
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.39636377800025
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4418830499998876
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5146086429999741
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6072735470002044
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.638912743000219
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5417039720000503
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6898298629998862
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6322706119999566
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.7360622860001058
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.648619583999789
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5762326189997111
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6892350869998154
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5567209109999567
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.665227891000086
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5778018080000038
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6368455430001632
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.656203579999783
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6211992690000443
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5741296510000211
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6231740509997508
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6720435090001047
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6297946029999366
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5669086590000916
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6101080259995797
+    },
+    {
+      "fault": "resize_blur",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6863032319997728
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5672431839998353
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5364913819998947
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.579845349000152
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6058535389997814
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5506389700003638
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.559572234999905
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5723296220003249
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.642808733000038
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.585145300000022
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 9,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5427078269999583
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5574928159999217
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5509274310002183
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6011698990000696
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.589563064000231
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 14,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.607683052000084
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5293387540000367
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 16,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5661193509999976
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5627153850000468
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5684293779995642
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5493703860001915
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5422666800000115
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5553131239998947
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5436772400003065
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.557203458999993
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 24,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5608351679998123
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5614203879999877
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38630669399981343
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3868840619998082
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3913920830000279
+    },
+    {
+      "fault": "channel_swap",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3709363289999601
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3702619689997846
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.383842833000017
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3876788459997442
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3717200379996939
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.41720260400006737
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3754468930001167
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3692079840002407
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3710180559996843
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3703865509996831
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3696810920000644
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3867539810003109
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3688038059999599
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36550549399999
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38367818899996564
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37585376300012285
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36929356500013455
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3795494829996642
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3617702920000738
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3759561889996803
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37499368799990407
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.369580735999989
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38673359599988544
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3763871430001018
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38700312400033
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3804121960001794
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36889517700001306
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3641108440001517
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3778813240001
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3683232710000084
+    },
+    {
+      "fault": "frozen_frames",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36335989600001994
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37422634899985496
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3618953100003637
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35975322700005563
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38887877100023616
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38388397900007476
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38397311700009595
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37659692399984124
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3698199650002607
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3683452139998735
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3632901989999482
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3609359460001542
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36676223399990704
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3726714009999341
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3741034380000201
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3755138389997228
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38759250599969164
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.43870609400028115
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36100726199993005
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.445870080000077
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.35771694999993997
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37910476500019286
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37599179100016045
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3689771459999065
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36560032200031856
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36995087399964177
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.357159319999937
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.443283387000065
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3537935149997793
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3731859549998262
+    },
+    {
+      "fault": "locale_launch",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3748334369997792
+    },
+    {
+      "fault": "caption_template",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38474003500004983
+    },
+    {
+      "fault": "caption_template",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3846997589998864
+    },
+    {
+      "fault": "caption_template",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3764462630001617
+    },
+    {
+      "fault": "caption_template",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4201443189999736
+    },
+    {
+      "fault": "caption_template",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37748385199984114
+    },
+    {
+      "fault": "caption_template",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3724704430001111
+    },
+    {
+      "fault": "caption_template",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3914373639995574
+    },
+    {
+      "fault": "caption_template",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3721848290001617
+    },
+    {
+      "fault": "caption_template",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38197477099993193
+    },
+    {
+      "fault": "caption_template",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.40401143400004
+    },
+    {
+      "fault": "caption_template",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37680592700007765
+    },
+    {
+      "fault": "caption_template",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3804349550000552
+    },
+    {
+      "fault": "caption_template",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38019000400026925
+    },
+    {
+      "fault": "caption_template",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37338878899981864
+    },
+    {
+      "fault": "caption_template",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3794042829999853
+    },
+    {
+      "fault": "caption_template",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37307127399981255
+    },
+    {
+      "fault": "caption_template",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37569607800014637
+    },
+    {
+      "fault": "caption_template",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3761184400000275
+    },
+    {
+      "fault": "caption_template",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3941241299999092
+    },
+    {
+      "fault": "caption_template",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37647676300002786
+    },
+    {
+      "fault": "caption_template",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38087967199999184
+    },
+    {
+      "fault": "caption_template",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.370773888000258
+    },
+    {
+      "fault": "caption_template",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.36714348600025914
+    },
+    {
+      "fault": "caption_template",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37101283899983173
+    },
+    {
+      "fault": "caption_template",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38606070700006967
+    },
+    {
+      "fault": "caption_template",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.43069770800002516
+    },
+    {
+      "fault": "caption_template",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3904282489997968
+    },
+    {
+      "fault": "caption_template",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37682443500034424
+    },
+    {
+      "fault": "caption_template",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38177923099965483
+    },
+    {
+      "fault": "caption_template",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37392812799998865
+    },
+    {
+      "fault": "client_mix",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3738934060002066
+    },
+    {
+      "fault": "client_mix",
+      "trial": 1,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3760125029998562
+    },
+    {
+      "fault": "client_mix",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3570492080002623
+    },
+    {
+      "fault": "client_mix",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3674501959999361
+    },
+    {
+      "fault": "client_mix",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3826266440000836
+    },
+    {
+      "fault": "client_mix",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38829280900017693
+    },
+    {
+      "fault": "client_mix",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3710135750002337
+    },
+    {
+      "fault": "client_mix",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38313881400017635
+    },
+    {
+      "fault": "client_mix",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3926526909999666
+    },
+    {
+      "fault": "client_mix",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.405697372999839
+    },
+    {
+      "fault": "client_mix",
+      "trial": 10,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3702889800001685
+    },
+    {
+      "fault": "client_mix",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37050742999963404
+    },
+    {
+      "fault": "client_mix",
+      "trial": 12,
+      "detected": false,
+      "signals": [],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38311917600003653
+    },
+    {
+      "fault": "client_mix",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38735937000001286
+    },
+    {
+      "fault": "client_mix",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37498347499968077
+    },
+    {
+      "fault": "client_mix",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37624560899985227
+    },
+    {
+      "fault": "client_mix",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3806908819997261
+    },
+    {
+      "fault": "client_mix",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37563475799970547
+    },
+    {
+      "fault": "client_mix",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4346875930000351
+    },
+    {
+      "fault": "client_mix",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.371958973999881
+    },
+    {
+      "fault": "client_mix",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3689980600001945
+    },
+    {
+      "fault": "client_mix",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.38073706599971047
+    },
+    {
+      "fault": "client_mix",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3870388579998689
+    },
+    {
+      "fault": "client_mix",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.377903169000092
+    },
+    {
+      "fault": "client_mix",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3803130140004214
+    },
+    {
+      "fault": "client_mix",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3812361570003304
+    },
+    {
+      "fault": "client_mix",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37783412599992516
+    },
+    {
+      "fault": "client_mix",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.37705816000016057
+    },
+    {
+      "fault": "client_mix",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3689081940001415
+    },
+    {
+      "fault": "client_mix",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "input_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.3729073910003535
+    },
+    {
+      "fault": "schema_break",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6573456579999402
+    },
+    {
+      "fault": "schema_break",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6277730730002986
+    },
+    {
+      "fault": "schema_break",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6266156790002242
+    },
+    {
+      "fault": "schema_break",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6424029340000743
+    },
+    {
+      "fault": "schema_break",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.643094857000051
+    },
+    {
+      "fault": "schema_break",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6482858809999925
+    },
+    {
+      "fault": "schema_break",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6509619940002267
+    },
+    {
+      "fault": "schema_break",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.7031610960002581
+    },
+    {
+      "fault": "schema_break",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6528457760000492
+    },
+    {
+      "fault": "schema_break",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.657535155000005
+    },
+    {
+      "fault": "schema_break",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6523345589998826
+    },
+    {
+      "fault": "schema_break",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6413677079999616
+    },
+    {
+      "fault": "schema_break",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6476362109997353
+    },
+    {
+      "fault": "schema_break",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6569486889998188
+    },
+    {
+      "fault": "schema_break",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6503324979998979
+    },
+    {
+      "fault": "schema_break",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6448998999999276
+    },
+    {
+      "fault": "schema_break",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.7276443390001077
+    },
+    {
+      "fault": "schema_break",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6691271879999476
+    },
+    {
+      "fault": "schema_break",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6506428849997974
+    },
+    {
+      "fault": "schema_break",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6395588720001797
+    },
+    {
+      "fault": "schema_break",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6459496639999998
+    },
+    {
+      "fault": "schema_break",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6314980320003087
+    },
+    {
+      "fault": "schema_break",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.635407388999738
+    },
+    {
+      "fault": "schema_break",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6446786579999753
+    },
+    {
+      "fault": "schema_break",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6556245560000207
+    },
+    {
+      "fault": "schema_break",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.7255952569998954
+    },
+    {
+      "fault": "schema_break",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6531912860000375
+    },
+    {
+      "fault": "schema_break",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.639702916999795
+    },
+    {
+      "fault": "schema_break",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6663598720001573
+    },
+    {
+      "fault": "schema_break",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "contract",
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6597007310001572
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6578761999999188
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6731582950001211
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6536195589997078
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.648469164999824
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6350966820000394
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6533855669999866
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6259445450000385
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6416132260001177
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6259724159999678
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6433601560001989
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6676589879998573
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6688855160000458
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6395498749998296
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6447614919998159
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6377367589998357
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6638112980003825
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6466921090000142
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6644410640001297
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6545681560000958
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6494948859999568
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.652258783000434
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6649810409999191
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6506999420003012
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6493930789997648
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6485281370000848
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6857880070001556
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.643989523000073
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6505699680001271
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "contract"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.659254687000157
+    },
+    {
+      "fault": "output_corruption",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "contract",
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.6503927210001166
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 0,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.549510797000039
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 1,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5302267590000156
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 2,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5306313209998734
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 3,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.48118680800007496
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 4,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.48424593499976254
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 5,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5157310740000867
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 6,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4874227220002467
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 7,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4987763089998225
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 8,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.485390649999772
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 9,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4915830380000443
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 10,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.49296453700026177
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 11,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4816566290000992
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 12,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.48342845100023624
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 13,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5208744970000225
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 14,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.504103971999939
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 15,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4794642409997323
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 16,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5418299819998538
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 17,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5412773650000418
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 18,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.5051121199999216
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 19,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4718712700000651
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 20,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.48319501499963735
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 21,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4957634719999078
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 22,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4903913670000293
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 23,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4835000940001919
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 24,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4736462539999593
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 25,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4926808540003549
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 26,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.48183566799980326
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 27,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4742214220000278
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 28,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.46018432900018524
+    },
+    {
+      "fault": "bad_replica",
+      "trial": 29,
+      "detected": true,
+      "signals": [
+        "output_drift"
+      ],
+      "windows": [
+        "contract",
+        "drift"
+      ],
+      "seconds": 0.4755049649998
+    }
+  ]
+}

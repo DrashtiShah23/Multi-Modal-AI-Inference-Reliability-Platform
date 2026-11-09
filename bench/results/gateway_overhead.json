@@ -1,0 +1,153 @@
+{
+  "upstream_service_time_ms": 2,
+  "mirror_fraction": 0.1,
+  "sample_fraction": 0.05,
+  "payload_bytes": 55270,
+  "rows": [
+    {
+      "rate": 500,
+      "direct": {
+        "url": "http://127.0.0.1:8201/v2/models/multimodal/infer",
+        "target_rps": 500,
+        "achieved_rps": 500.06666666666666,
+        "requests": 7501,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.126,
+        "p90_ms": 3.709,
+        "p99_ms": 4.21,
+        "p999_ms": 8.138,
+        "max_ms": 17.336
+      },
+      "gateway_proxy_only": {
+        "url": "http://127.0.0.1:8281/v2/models/multimodal/infer",
+        "target_rps": 500,
+        "achieved_rps": 500.06666666666666,
+        "requests": 7501,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.659,
+        "p90_ms": 4.229,
+        "p99_ms": 4.663,
+        "p999_ms": 5.732,
+        "max_ms": 7.491
+      },
+      "gateway_full": {
+        "url": "http://127.0.0.1:8280/v2/models/multimodal/infer",
+        "target_rps": 500,
+        "achieved_rps": 500.06666666666666,
+        "requests": 7501,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.694,
+        "p90_ms": 4.465,
+        "p99_ms": 7.57,
+        "p999_ms": 17.7,
+        "max_ms": 24.823
+      },
+      "proxy_only_added_p50_ms": 0.533,
+      "proxy_only_added_p99_ms": 0.453,
+      "full_added_p50_ms": 0.568,
+      "full_added_p99_ms": 3.36
+    },
+    {
+      "rate": 1000,
+      "direct": {
+        "url": "http://127.0.0.1:8201/v2/models/multimodal/infer",
+        "target_rps": 1000,
+        "achieved_rps": 1000.0666666666667,
+        "requests": 15001,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.121,
+        "p90_ms": 3.668,
+        "p99_ms": 4.042,
+        "p999_ms": 4.837,
+        "max_ms": 5.444
+      },
+      "gateway_proxy_only": {
+        "url": "http://127.0.0.1:8281/v2/models/multimodal/infer",
+        "target_rps": 1000,
+        "achieved_rps": 1000.0666666666667,
+        "requests": 15001,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.633,
+        "p90_ms": 4.203,
+        "p99_ms": 5.789,
+        "p999_ms": 8.538,
+        "max_ms": 12.113
+      },
+      "gateway_full": {
+        "url": "http://127.0.0.1:8280/v2/models/multimodal/infer",
+        "target_rps": 1000,
+        "achieved_rps": 1000.0666666666667,
+        "requests": 15001,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.78,
+        "p90_ms": 5.389,
+        "p99_ms": 9.543,
+        "p999_ms": 14.889,
+        "max_ms": 19.072
+      },
+      "proxy_only_added_p50_ms": 0.512,
+      "proxy_only_added_p99_ms": 1.747,
+      "full_added_p50_ms": 0.659,
+      "full_added_p99_ms": 5.501
+    },
+    {
+      "rate": 2000,
+      "direct": {
+        "url": "http://127.0.0.1:8201/v2/models/multimodal/infer",
+        "target_rps": 2000,
+        "achieved_rps": 2000.1333333333334,
+        "requests": 30002,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.274,
+        "p90_ms": 3.871,
+        "p99_ms": 4.721,
+        "p999_ms": 6.077,
+        "max_ms": 8.457
+      },
+      "gateway_proxy_only": {
+        "url": "http://127.0.0.1:8281/v2/models/multimodal/infer",
+        "target_rps": 2000,
+        "achieved_rps": 2000.1333333333334,
+        "requests": 30002,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 3.52,
+        "p90_ms": 4.72,
+        "p99_ms": 7.897,
+        "p999_ms": 10.917,
+        "max_ms": 17.175
+      },
+      "gateway_full": {
+        "url": "http://127.0.0.1:8280/v2/models/multimodal/infer",
+        "target_rps": 2000,
+        "achieved_rps": 2000.1333333333334,
+        "requests": 30002,
+        "errors": 0,
+        "dropped": 0,
+        "p50_ms": 4.338,
+        "p90_ms": 7.931,
+        "p99_ms": 14.752,
+        "p999_ms": 26.853,
+        "max_ms": 40.591
+      },
+      "proxy_only_added_p50_ms": 0.246,
+      "proxy_only_added_p99_ms": 3.176,
+      "full_added_p50_ms": 1.064,
+      "full_added_p99_ms": 10.031
+    }
+  ],
+  "gateway_counters": [
+    "bellwether_gateway_mirror_total{model=\"multimodal\",outcome=\"sent\"} 6239",
+    "bellwether_gateway_samples_total{outcome=\"dropped\"} 0",
+    "bellwether_gateway_samples_total{outcome=\"enqueued\"} 9056",
+    "bellwether_gateway_samples_total{outcome=\"failed\"} 0",
+    "bellwether_gateway_samples_total{outcome=\"sent\"} 6965"
+  ]
+}

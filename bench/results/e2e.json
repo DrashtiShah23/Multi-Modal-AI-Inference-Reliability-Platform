@@ -1,0 +1,303 @@
+{
+  "phases": [
+    {
+      "candidate": "v2",
+      "injected_latency_ms": 0,
+      "injected_error_rate": 0.0,
+      "expected": "PROMOTE",
+      "decision": "PROMOTE",
+      "traffic": {
+        "requests": 2500,
+        "errors": 0,
+        "rps": 442.4,
+        "p50_ms": 35.77,
+        "p99_ms": 65.72
+      },
+      "checks": [
+        {
+          "name": "error_budget_burn",
+          "value": 0.0,
+          "threshold": 14.4,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": "candidate error ratio 0.0000 vs primary 0.0000"
+        },
+        {
+          "name": "latency_p95_ratio",
+          "value": 0.34348655414956497,
+          "threshold": 1.25,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": "p95 16.1 ms vs 47.0 ms"
+        },
+        {
+          "name": "image_embedding_cosine_p10",
+          "value": 0.9147433161735534,
+          "threshold": 0.85,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": ""
+        },
+        {
+          "name": "text_embedding_cosine_p10",
+          "value": 0.9800337791442871,
+          "threshold": 0.85,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": ""
+        },
+        {
+          "name": "similarity_mae",
+          "value": 0.040479002984202636,
+          "threshold": 0.08,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": ""
+        },
+        {
+          "name": "contract_violation_excess",
+          "value": 0.0,
+          "threshold": 0.005,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "candidate": "v3",
+      "injected_latency_ms": 0,
+      "injected_error_rate": 0.0,
+      "expected": "ROLLBACK",
+      "decision": "ROLLBACK",
+      "traffic": {
+        "requests": 2500,
+        "errors": 0,
+        "rps": 404.7,
+        "p50_ms": 37.03,
+        "p99_ms": 72.0
+      },
+      "checks": [
+        {
+          "name": "error_budget_burn",
+          "value": 0.0,
+          "threshold": 14.4,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 255,
+          "detail": "candidate error ratio 0.0000 vs primary 0.0000"
+        },
+        {
+          "name": "latency_p95_ratio",
+          "value": 0.2445262702353796,
+          "threshold": 1.25,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 255,
+          "detail": "p95 13.3 ms vs 54.5 ms"
+        },
+        {
+          "name": "image_embedding_cosine_p10",
+          "value": -0.02985335364937781,
+          "threshold": 0.85,
+          "passed": false,
+          "sufficient_data": true,
+          "samples": 255,
+          "detail": ""
+        },
+        {
+          "name": "text_embedding_cosine_p10",
+          "value": 1.0,
+          "threshold": 0.85,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 255,
+          "detail": ""
+        },
+        {
+          "name": "similarity_mae",
+          "value": 0.3811897483234312,
+          "threshold": 0.08,
+          "passed": false,
+          "sufficient_data": true,
+          "samples": 255,
+          "detail": ""
+        },
+        {
+          "name": "contract_violation_excess",
+          "value": 0.0,
+          "threshold": 0.005,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 255,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "candidate": "v2-slow",
+      "injected_latency_ms": 40,
+      "injected_error_rate": 0.0,
+      "expected": "ROLLBACK",
+      "decision": "ROLLBACK",
+      "traffic": {
+        "requests": 2500,
+        "errors": 0,
+        "rps": 454.4,
+        "p50_ms": 34.33,
+        "p99_ms": 61.39
+      },
+      "checks": [
+        {
+          "name": "error_budget_burn",
+          "value": 0.0,
+          "threshold": 14.4,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 226,
+          "detail": "candidate error ratio 0.0000 vs primary 0.0000"
+        },
+        {
+          "name": "latency_p95_ratio",
+          "value": 1.28414038362703,
+          "threshold": 1.25,
+          "passed": false,
+          "sufficient_data": true,
+          "samples": 226,
+          "detail": "p95 54.3 ms vs 42.3 ms"
+        },
+        {
+          "name": "image_embedding_cosine_p10",
+          "value": 0.91087207198143,
+          "threshold": 0.85,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 226,
+          "detail": ""
+        },
+        {
+          "name": "text_embedding_cosine_p10",
+          "value": 0.9786957800388336,
+          "threshold": 0.85,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 226,
+          "detail": ""
+        },
+        {
+          "name": "similarity_mae",
+          "value": 0.03729346645089377,
+          "threshold": 0.08,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 226,
+          "detail": ""
+        },
+        {
+          "name": "contract_violation_excess",
+          "value": 0.0,
+          "threshold": 0.005,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 226,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "candidate": "v2-errors",
+      "injected_latency_ms": 0,
+      "injected_error_rate": 0.05,
+      "expected": "ROLLBACK",
+      "decision": "ROLLBACK",
+      "traffic": {
+        "requests": 2500,
+        "errors": 0,
+        "rps": 446.6,
+        "p50_ms": 35.17,
+        "p99_ms": 63.9
+      },
+      "checks": [
+        {
+          "name": "error_budget_burn",
+          "value": 69.38775510204076,
+          "threshold": 14.4,
+          "passed": false,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": "candidate error ratio 0.0694 vs primary 0.0000"
+        },
+        {
+          "name": "latency_p95_ratio",
+          "value": 0.33058870426640014,
+          "threshold": 1.25,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 228,
+          "detail": "p95 15.1 ms vs 45.5 ms"
+        },
+        {
+          "name": "image_embedding_cosine_p10",
+          "value": 0.9156550168991089,
+          "threshold": 0.85,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 228,
+          "detail": ""
+        },
+        {
+          "name": "text_embedding_cosine_p10",
+          "value": 0.9780039370059967,
+          "threshold": 0.85,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 228,
+          "detail": ""
+        },
+        {
+          "name": "similarity_mae",
+          "value": 0.03686618831074029,
+          "threshold": 0.08,
+          "passed": true,
+          "sufficient_data": true,
+          "samples": 228,
+          "detail": ""
+        },
+        {
+          "name": "contract_violation_excess",
+          "value": 0.06938775510204082,
+          "threshold": 0.005,
+          "passed": false,
+          "sufficient_data": true,
+          "samples": 245,
+          "detail": ""
+        }
+      ]
+    }
+  ],
+  "drift_phase": {
+    "clean_requests": 400,
+    "bgr_requests": 800,
+    "incidents": [
+      {
+        "kind": "input_drift",
+        "severity": "critical",
+        "summary": "input drift in 400 items: output.image_embedding (p=8.1e-122), output.similarity (p=1.1e-92), image.thumbnail (p=1.5e-24), image.blue_mean (p=2.0e-20)",
+        "occurrences": 3
+      }
+    ]
+  },
+  "analyzer_metrics_sample": [
+    "bellwether_analyzer_canary_decision{candidate=\"v2\",model=\"multimodal\"} 1.0",
+    "bellwether_analyzer_canary_decision{candidate=\"v3\",model=\"multimodal\"} -1.0",
+    "bellwether_analyzer_canary_decision{candidate=\"v2-slow\",model=\"multimodal\"} -1.0",
+    "bellwether_analyzer_canary_decision{candidate=\"v2-errors\",model=\"multimodal\"} -1.0"
+  ],
+  "all_expected": true
+}

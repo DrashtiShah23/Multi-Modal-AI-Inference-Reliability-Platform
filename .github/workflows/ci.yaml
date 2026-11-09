@@ -1,0 +1,107 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: bellwether
+          POSTGRES_PASSWORD: bellwether
+          POSTGRES_DB: bellwether
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U bellwether" --health-interval 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev,postgres]"
+      - run: ruff check src tests scripts
+      - name: Generated code is up to date
+        run: |
+          make proto rules
+          git diff --exit-code
+      - name: Tests (including PostgreSQL integration)
+        env:
+          BELLWETHER_TEST_PG_URL: postgresql+psycopg2://bellwether:bellwether@localhost:5432/bellwether
+        run: pytest
+
+  go:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gateway
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+      - run: test -z "$(gofmt -l .)"
+      - run: go vet ./...
+      - run: go test -race -count=1 ./...
+
+  e2e:
+    needs: [python, go]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+      - run: pip install -e .
+      - run: make models gateway
+      - name: Canary drill through the real gateway
+        run: python -m bellwether.bench.e2e --requests 2500
+      - name: Fault-injection benchmark (reduced)
+        run: python -m bellwether.bench.run_faults --trials 10 --clean 100
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bench-results
+          path: bench/results/
+
+  deploy-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kustomize render and schema validation (core and CRDs)
+        run: |
+          curl -sSfL https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz | tar xz
+          curl -sSfL https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz | tar xz
+          for overlay in deploy/k8s/base deploy/k8s/overlays/gke; do
+            ./kustomize build "$overlay" | ./kubeconform -strict -summary -kubernetes-version 1.30.0 \
+              -schema-location default \
+              -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json'
+          done
+      - uses: hashicorp/setup-terraform@v3
+      - name: Terraform fmt and validate
+        working-directory: infra/terraform/gke
+        run: |
+          terraform fmt -check -recursive
+          terraform init -backend=false
+          terraform validate
+
+  images:
+    needs: [python, go]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - run: docker build -t bellwether/gateway:ci gateway
+      - run: docker build --target analyzer -t bellwether/analyzer:ci .
+      - run: docker build --target modelserver -t bellwether/modelserver:ci .
