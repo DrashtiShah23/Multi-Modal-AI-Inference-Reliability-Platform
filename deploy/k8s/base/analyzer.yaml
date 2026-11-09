@@ -1,0 +1,78 @@
+# One analyzer replica per model: drift windows and canary pairs are kept in
+# memory per (model, version), so replicas would split the windows. Scale out
+# by sharding models across analyzer deployments.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bellwether-analyzer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bellwether-analyzer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: analyzer
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: analyzer
+    spec:
+      serviceAccountName: bellwether-analyzer
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: analyzer
+          image: bellwether/analyzer
+          args: ["serve"]
+          env:
+            - name: BELLWETHER_DB_URL
+              valueFrom:
+                secretKeyRef: { name: bellwether-db, key: url }
+            - name: BELLWETHER_WINDOW_SIZE
+              value: "400"
+            - name: BELLWETHER_BASELINE_ITEMS
+              value: "6000"
+            - name: BELLWETHER_SLO_TARGET
+              value: "0.999"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://otel-collector.observability.svc.cluster.local:4318
+            - name: OTEL_SERVICE_NAME
+              value: bellwether-analyzer
+          ports:
+            - { name: http, containerPort: 8010 }
+            - { name: grpc, containerPort: 50051 }
+          readinessProbe:
+            httpGet: { path: /readyz, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 10
+          resources:
+            requests: { cpu: "1", memory: 1Gi }
+            limits: { memory: 2Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          volumeMounts:
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bellwether-analyzer
+spec:
+  selector:
+    app.kubernetes.io/name: analyzer
+  ports:
+    - { name: http, port: 8010, targetPort: http }
+    - { name: grpc, port: 50051, targetPort: grpc, appProtocol: grpc }

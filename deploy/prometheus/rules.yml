@@ -1,0 +1,137 @@
+# Source of truth for Bellwether's recording and alerting rules.
+# deploy/k8s/base/prometheus-rules.yaml wraps these groups in a PrometheusRule;
+# `make rules` regenerates it and tests/test_deploy.py checks they match.
+#
+# SLO: 99.9% of inference requests succeed (error budget 0.1% over 30 days).
+# Multi-window, multi-burn-rate alerts follow the Google SRE Workbook.
+groups:
+  - name: bellwether-slo-recording
+    rules:
+      - record: bellwether:gateway_errors:ratio_rate5m
+        expr: |
+          sum by (model, route) (rate(bellwether_gateway_requests_total{code=~"5.."}[5m]))
+          /
+          clamp_min(sum by (model, route) (rate(bellwether_gateway_requests_total[5m])), 1e-12)
+      - record: bellwether:gateway_errors:ratio_rate30m
+        expr: |
+          sum by (model, route) (rate(bellwether_gateway_requests_total{code=~"5.."}[30m]))
+          /
+          clamp_min(sum by (model, route) (rate(bellwether_gateway_requests_total[30m])), 1e-12)
+      - record: bellwether:gateway_errors:ratio_rate1h
+        expr: |
+          sum by (model, route) (rate(bellwether_gateway_requests_total{code=~"5.."}[1h]))
+          /
+          clamp_min(sum by (model, route) (rate(bellwether_gateway_requests_total[1h])), 1e-12)
+      - record: bellwether:gateway_errors:ratio_rate6h
+        expr: |
+          sum by (model, route) (rate(bellwether_gateway_requests_total{code=~"5.."}[6h]))
+          /
+          clamp_min(sum by (model, route) (rate(bellwether_gateway_requests_total[6h])), 1e-12)
+      - record: bellwether:gateway_errors:ratio_rate3d
+        expr: |
+          sum by (model, route) (rate(bellwether_gateway_requests_total{code=~"5.."}[3d]))
+          /
+          clamp_min(sum by (model, route) (rate(bellwether_gateway_requests_total[3d])), 1e-12)
+      - record: bellwether:gateway_upstream_latency_seconds:p99_rate5m
+        expr: |
+          histogram_quantile(0.99, sum by (le, model, route) (rate(bellwether_gateway_upstream_latency_seconds_bucket[5m])))
+
+  - name: bellwether-slo-alerts
+    rules:
+      - alert: BellwetherErrorBudgetFastBurn
+        expr: |
+          bellwether:gateway_errors:ratio_rate1h{route="primary"} > (14.4 * 0.001)
+          and
+          bellwether:gateway_errors:ratio_rate5m{route="primary"} > (14.4 * 0.001)
+        labels:
+          severity: page
+        annotations:
+          summary: "{{ $labels.model }} is burning error budget 14.4x too fast (2% of the 30 day budget per hour)"
+          runbook: docs/runbook.md#error-budget-burn
+      - alert: BellwetherErrorBudgetSlowBurn
+        expr: |
+          bellwether:gateway_errors:ratio_rate6h{route="primary"} > (6 * 0.001)
+          and
+          bellwether:gateway_errors:ratio_rate30m{route="primary"} > (6 * 0.001)
+        labels:
+          severity: page
+        annotations:
+          summary: "{{ $labels.model }} is burning error budget 6x too fast (5% of the budget per 6 hours)"
+          runbook: docs/runbook.md#error-budget-burn
+      - alert: BellwetherErrorBudgetTicket
+        expr: |
+          bellwether:gateway_errors:ratio_rate3d{route="primary"} > 0.001
+          and
+          bellwether:gateway_errors:ratio_rate6h{route="primary"} > 0.001
+        labels:
+          severity: ticket
+        annotations:
+          summary: "{{ $labels.model }} is spending error budget faster than it accrues"
+          runbook: docs/runbook.md#error-budget-burn
+
+  - name: bellwether-model-health
+    rules:
+      - alert: BellwetherContractViolations
+        expr: max by (model) (bellwether_analyzer_open_incidents{kind="contract"}) > 0
+        labels:
+          severity: page
+        annotations:
+          summary: "{{ $labels.model }}: requests or responses are breaking the data contract"
+          runbook: docs/runbook.md#contract-incident
+      - alert: BellwetherOutputDrift
+        expr: max by (model) (bellwether_analyzer_open_incidents{kind="output_drift"}) > 0
+        labels:
+          severity: page
+        annotations:
+          summary: "{{ $labels.model }}: model outputs moved while inputs look unchanged"
+          runbook: docs/runbook.md#output-drift
+      - alert: BellwetherInputDrift
+        expr: max by (model) (bellwether_analyzer_open_incidents{kind="input_drift"}) > 0
+        for: 10m
+        labels:
+          severity: ticket
+        annotations:
+          summary: "{{ $labels.model }}: traffic no longer matches the baseline"
+          runbook: docs/runbook.md#input-drift
+      - alert: BellwetherCanaryRollback
+        expr: bellwether_analyzer_canary_decision == -1
+        labels:
+          severity: ticket
+        annotations:
+          summary: "Shadow canary {{ $labels.candidate }} of {{ $labels.model }} failed analysis"
+          runbook: docs/runbook.md#canary-rollback
+      - alert: BellwetherCandidateBreakerOpen
+        expr: bellwether_gateway_breaker_state{upstream="candidate"} == 2
+        for: 5m
+        labels:
+          severity: ticket
+        annotations:
+          summary: "Gateway stopped mirroring to the candidate after repeated failures"
+          runbook: docs/runbook.md#canary-rollback
+      - alert: BellwetherSamplesDropped
+        expr: |
+          sum(rate(bellwether_gateway_samples_total{outcome=~"dropped|failed"}[10m]))
+          /
+          clamp_min(sum(rate(bellwether_gateway_samples_total{outcome="enqueued"}[10m])), 1e-9) > 0.05
+        for: 15m
+        labels:
+          severity: ticket
+        annotations:
+          summary: "More than 5% of samples are not reaching the analyzer; drift detection is partly blind"
+          runbook: docs/runbook.md#analyzer-unavailable
+      - alert: BellwetherGatewayShedding
+        expr: sum by (model) (rate(bellwether_gateway_shed_total[5m])) > 0
+        for: 5m
+        labels:
+          severity: page
+        annotations:
+          summary: "Gateway is rejecting {{ $labels.model }} requests at its in-flight limit"
+          runbook: docs/runbook.md#load-shedding
+      - alert: BellwetherNoBaseline
+        expr: bellwether_analyzer_baseline_ready == 0
+        for: 1h
+        labels:
+          severity: ticket
+        annotations:
+          summary: "No drift baseline for {{ $labels.model }}; only contract checks are running"
+          runbook: docs/runbook.md#no-baseline

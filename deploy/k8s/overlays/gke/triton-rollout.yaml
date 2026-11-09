@@ -1,0 +1,61 @@
+# Swap the CPU model server for Triton on an L4 GPU node pool.
+# Releases are published to gs://BUCKET/releases/<n>/ by `make publish-triton`,
+# with every model's version directory set to <n>; Triton reports <n> as
+# model_version, which the gateway uses as the release label. So release 2 is
+# analyzed with candidate-version "2".
+#
+# Rollout is a CRD, so kustomize merges this patch as JSON merge: the steps and
+# containers lists below replace the base lists wholesale.
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: modelserver
+spec:
+  strategy:
+    canary:
+      steps:
+        - setCanaryScale:
+            replicas: 1
+        - analysis:
+            templates:
+              - templateName: bellwether-shadow-canary
+            args:
+              - name: candidate-version
+                value: "1"
+  template:
+    spec:
+      serviceAccountName: triton
+      nodeSelector:
+        cloud.google.com/gke-accelerator: nvidia-l4
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: modelserver
+          image: nvcr.io/nvidia/tritonserver:24.08-py3
+          command: ["tritonserver"]
+          args:
+            - --model-repository=gs://BUCKET/releases/1
+            - --http-port=8000
+            - --grpc-port=8001
+            - --metrics-port=8002
+            - --strict-readiness=true
+          ports:
+            - { name: http, containerPort: 8000 }
+            - { name: grpc, containerPort: 8001 }
+            - { name: metrics, containerPort: 8002 }
+          readinessProbe:
+            httpGet: { path: /v2/health/ready, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /v2/health/live, port: http }
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            requests: { cpu: "4", memory: 8Gi, nvidia.com/gpu: 1 }
+            limits: { memory: 16Gi, nvidia.com/gpu: 1 }
+          securityContext:
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,21 @@
+# Game day 2: kill canary pods every 2 minutes. Expected: the gateway's
+# candidate circuit breaker opens and stops mirroring, clients see no errors,
+# BellwetherCandidateBreakerOpen fires, and the canary cannot reach PROMOTE.
+apiVersion: chaos-mesh.org/v1alpha1
+kind: Schedule
+metadata:
+  name: candidate-pod-kill
+  namespace: bellwether
+spec:
+  schedule: "*/2 * * * *"
+  type: PodChaos
+  historyLimit: 5
+  concurrencyPolicy: Forbid
+  podChaos:
+    action: pod-kill
+    mode: all
+    selector:
+      namespaces: [bellwether]
+      labelSelectors:
+        app.kubernetes.io/name: modelserver
+        track: canary

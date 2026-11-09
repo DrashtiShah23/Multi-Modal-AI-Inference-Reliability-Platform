@@ -1,0 +1,30 @@
+# Scrape configs for the Prometheus Operator (kube-prometheus-stack).
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: bellwether-gateway
+spec:
+  selector:
+    matchLabels: { app.kubernetes.io/name: gateway }
+  podMetricsEndpoints:
+    - { port: admin, path: /metrics, interval: 15s }
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: bellwether-analyzer
+spec:
+  selector:
+    matchLabels: { app.kubernetes.io/name: analyzer }
+  podMetricsEndpoints:
+    - { port: http, path: /metrics, interval: 15s }
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: bellwether-modelserver
+spec:
+  selector:
+    matchLabels: { app.kubernetes.io/name: modelserver }
+  podMetricsEndpoints:
+    - { port: http, path: /metrics, interval: 15s }

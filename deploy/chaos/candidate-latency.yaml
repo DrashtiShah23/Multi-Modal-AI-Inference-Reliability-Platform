@@ -1,0 +1,22 @@
+# Game day 1: the candidate gets 150 ms (+/- 30 ms) of network latency during
+# its shadow analysis. Expected: client latency unchanged (mirroring is off the
+# request path), latency_p95_ratio fails, the Rollout aborts.
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: candidate-latency
+  namespace: bellwether
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces: [bellwether]
+    labelSelectors:
+      app.kubernetes.io/name: modelserver
+      track: canary
+  delay:
+    latency: 150ms
+    jitter: 30ms
+    correlation: "25"
+  direction: to
+  duration: 10m

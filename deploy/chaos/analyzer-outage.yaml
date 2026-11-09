@@ -1,0 +1,16 @@
+# Game day 3: the analyzer is unavailable for 5 minutes. Expected: no client
+# impact (sampling is fire and forget), BellwetherSamplesDropped fires, the
+# canary analysis turns inconclusive rather than passing.
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: analyzer-outage
+  namespace: bellwether
+spec:
+  action: pod-failure
+  mode: all
+  selector:
+    namespaces: [bellwether]
+    labelSelectors:
+      app.kubernetes.io/name: analyzer
+  duration: 5m

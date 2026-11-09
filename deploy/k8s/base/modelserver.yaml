@@ -1,0 +1,97 @@
+# The model server is released with an Argo Rollouts *shadow canary*:
+#   1. setCanaryScale brings up candidate pods behind modelserver-canary
+#      without shifting any client traffic (the gateway sends all client
+#      requests to modelserver-stable and mirrors a fraction to the canary).
+#   2. The analysis step polls the analyzer's paired-comparison verdict and the
+#      candidate's error-budget burn in Prometheus.
+#   3. On success the Rollout promotes; on failure it aborts and scales the
+#      canary down, and clients never saw the candidate.
+# To release: change the image/env below and the candidate-version argument.
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: modelserver
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: modelserver
+  strategy:
+    canary:
+      stableService: modelserver-stable
+      canaryService: modelserver-canary
+      stableMetadata:
+        labels:
+          track: stable
+      canaryMetadata:
+        labels:
+          track: canary
+      abortScaleDownDelaySeconds: 30
+      steps:
+        - setCanaryScale:
+            replicas: 1
+        - analysis:
+            templates:
+              - templateName: bellwether-shadow-canary
+            args:
+              - name: candidate-version
+                value: v1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: modelserver
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: modelserver
+          image: bellwether/modelserver
+          env:
+            - name: BELLWETHER_MODEL_REPOSITORY
+              value: /models/v1
+            - name: BELLWETHER_MODEL_VERSION
+              value: v1
+            - name: BELLWETHER_ORT_THREADS
+              value: "2"
+          ports:
+            - { name: http, containerPort: 8000 }
+          readinessProbe:
+            httpGet: { path: /v2/health/ready, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /v2/health/live, port: http }
+            periodSeconds: 10
+          resources:
+            requests: { cpu: "1", memory: 512Mi }
+            limits: { memory: 1Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          volumeMounts:
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: modelserver-stable
+spec:
+  selector:
+    app.kubernetes.io/name: modelserver
+  ports:
+    - { name: http, port: 8000, targetPort: http }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: modelserver-canary
+spec:
+  selector:
+    app.kubernetes.io/name: modelserver
+  ports:
+    - { name: http, port: 8000, targetPort: http }

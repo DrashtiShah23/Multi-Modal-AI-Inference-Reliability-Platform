@@ -1,0 +1,32 @@
+# GKE: Triton on NVIDIA L4 nodes serving the model repository from GCS,
+# images from Artifact Registry, Workload Identity for GCS access.
+# Replace PROJECT_ID, REGION and BUCKET (or render with `make k8s-gke`).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+  - triton-serviceaccount.yaml
+images:
+  - name: bellwether/gateway
+    newName: REGION-docker.pkg.dev/PROJECT_ID/bellwether/gateway
+    newTag: 0.1.0
+  - name: bellwether/analyzer
+    newName: REGION-docker.pkg.dev/PROJECT_ID/bellwether/analyzer
+    newTag: 0.1.0
+patches:
+  - path: triton-rollout.yaml
+  - target:
+      kind: ServiceAccount
+      name: bellwether-analyzer
+    patch: |
+      - op: add
+        path: /metadata/annotations
+        value:
+          iam.gke.io/gcp-service-account: bellwether-analyzer@PROJECT_ID.iam.gserviceaccount.com
+  - target:
+      kind: AnalysisTemplate
+      name: bellwether-shadow-canary
+    patch: |
+      - op: replace
+        path: /spec/metrics/1/provider/prometheus/address
+        value: http://prometheus-operated.monitoring.svc.cluster.local:9090

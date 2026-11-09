@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bellwether-gateway
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gateway
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gateway
+    spec:
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile: { type: RuntimeDefault }
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels: { app.kubernetes.io/name: gateway }
+      containers:
+        - name: gateway
+          image: bellwether/gateway
+          args:
+            - -listen=:8080
+            - -admin-listen=:9091
+            - -primary-url=http://modelserver-stable:8000
+            - -candidate-url=http://modelserver-canary:8000
+            - -analyzer-url=http://bellwether-analyzer:8010/v1/samples:batch
+            - -mirror-fraction=0.1
+            - -sample-fraction=0.05
+            - -max-inflight=1024
+            - -request-timeout=5s
+            - -mirror-timeout=3s
+          env:
+            - name: GOMEMLIMIT
+              value: 450MiB
+          ports:
+            - { name: http, containerPort: 8080 }
+            - { name: admin, containerPort: 9091 }
+          readinessProbe:
+            httpGet: { path: /readyz, port: admin }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: admin }
+            periodSeconds: 10
+          resources:
+            requests: { cpu: 500m, memory: 256Mi }
+            limits: { memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bellwether-gateway
+spec:
+  selector:
+    app.kubernetes.io/name: gateway
+  ports:
+    - { name: http, port: 80, targetPort: http }
+    - { name: admin, port: 9091, targetPort: admin }
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: bellwether-gateway
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: bellwether-gateway
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: { type: Utilization, averageUtilization: 65 }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: bellwether-gateway
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gateway

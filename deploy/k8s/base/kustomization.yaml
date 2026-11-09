@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: bellwether
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: bellwether
+    includeSelectors: false
+resources:
+  - namespace.yaml
+  - modelserver.yaml
+  - analysis-template.yaml
+  - analyzer.yaml
+  - gateway.yaml
+  - network-policies.yaml
+  - monitoring.yaml
+  - prometheus-rules.yaml
+images:
+  - name: bellwether/gateway
+    newTag: 0.1.0
+  - name: bellwether/analyzer
+    newTag: 0.1.0
+  - name: bellwether/modelserver
+    newTag: 0.1.0

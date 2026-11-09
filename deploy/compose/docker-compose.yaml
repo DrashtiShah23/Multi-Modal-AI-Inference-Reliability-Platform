@@ -1,0 +1,76 @@
+# Local stack: primary and candidate model servers, gateway, analyzer on
+# PostgreSQL, Prometheus and Jaeger.
+#   docker compose -f deploy/compose/docker-compose.yaml up --build
+#   curl -s localhost:8080/v2/models/multimodal/infer -d @request.json
+name: bellwether
+
+x-modelserver: &modelserver
+  build: { context: ../.., target: modelserver }
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/v2/health/ready')"]
+    interval: 5s
+    retries: 20
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: bellwether
+      POSTGRES_PASSWORD: bellwether
+      POSTGRES_DB: bellwether
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bellwether"]
+      interval: 5s
+      retries: 20
+
+  model-v1:
+    <<: *modelserver
+    environment:
+      BELLWETHER_MODEL_REPOSITORY: /models/v1
+      BELLWETHER_MODEL_VERSION: v1
+
+  model-candidate:
+    <<: *modelserver
+    environment:
+      BELLWETHER_MODEL_REPOSITORY: /models/${CANDIDATE_VARIANT:-v2}
+      BELLWETHER_MODEL_VERSION: ${CANDIDATE_LABEL:-v2}
+      BELLWETHER_INJECT_LATENCY_MS: ${CANDIDATE_LATENCY_MS:-0}
+      BELLWETHER_INJECT_ERROR_RATE: ${CANDIDATE_ERROR_RATE:-0}
+
+  analyzer:
+    build: { context: ../.., target: analyzer }
+    environment:
+      BELLWETHER_DB_URL: postgresql+psycopg2://bellwether:bellwether@postgres:5432/bellwether
+      BELLWETHER_BASELINE_ITEMS: "6000"
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+      OTEL_SERVICE_NAME: bellwether-analyzer
+    ports: ["8010:8010", "50051:50051"]
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  gateway:
+    build: { context: ../../gateway }
+    command:
+      - -primary-url=http://model-v1:8000
+      - -candidate-url=http://model-candidate:8000
+      - -analyzer-url=http://analyzer:8010/v1/samples:batch
+      - -mirror-fraction=0.1
+      - -sample-fraction=0.2
+    ports: ["8080:8080", "9091:9091"]
+    depends_on:
+      model-v1: { condition: service_healthy }
+      model-candidate: { condition: service_healthy }
+      analyzer: { condition: service_started }
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ../prometheus/rules.yml:/etc/prometheus/rules.yml:ro
+    ports: ["9090:9090"]
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.62.0
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports: ["16686:16686"]
