@@ -1,0 +1,8 @@
+.git
+build
+bench/results
+**/__pycache__
+**/*.egg-info
+*.db
+.venv
+gateway/Dockerfile

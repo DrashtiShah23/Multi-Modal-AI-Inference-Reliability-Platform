@@ -1,0 +1,32 @@
+# Data contract for the multimodal ensemble. Every sampled request and response
+# is checked per item; a window whose violation rate exceeds max_violation_rate
+# opens a "contract" incident with the most frequent violation codes.
+model: multimodal
+max_violation_rate: 0.02
+
+inputs:
+  image:
+    datatype: UINT8
+    shape: [64, 64, 3]
+  text:
+    datatype: BYTES
+    min_chars: 1
+    max_chars: 200
+
+parameters:
+  client:
+    required: true
+    values: [ios, android, web]
+  locale:
+    required: false
+    values: [en-US, en-GB, es-ES, fr-FR, de-DE]
+
+outputs:
+  image_embedding:
+    dim: 32
+    l2_norm: [0.98, 1.02]
+  text_embedding:
+    dim: 32
+    l2_norm: [0.98, 1.02]
+  similarity:
+    range: [-1.0001, 1.0001]

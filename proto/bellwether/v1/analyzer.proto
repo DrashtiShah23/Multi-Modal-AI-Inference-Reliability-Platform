@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package bellwether.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/DrashtiShah23/bellwether/gen/go/bellwether/v1;bellwetherv1";
+
+// AnalyzerService accepts sampled inference exchanges and serves the canary
+// verdicts and incidents derived from them. The gateway uses the equivalent
+// REST endpoint so it can stay dependency free; batch jobs and other producers
+// stream samples over gRPC.
+service AnalyzerService {
+  // Client-streaming ingest. Each message carries a batch of samples.
+  rpc IngestSamples(stream IngestSamplesRequest) returns (IngestSamplesResponse);
+  // Current shadow-canary decision for a candidate release.
+  rpc GetCanaryVerdict(GetCanaryVerdictRequest) returns (CanaryVerdict);
+  // Incidents for a model, newest first.
+  rpc ListIncidents(ListIncidentsRequest) returns (ListIncidentsResponse);
+}
+
+// One call to an upstream model server.
+message Exchange {
+  string version = 1;
+  // HTTP status; 0 when the upstream could not be reached.
+  int32 status = 2;
+  double latency_ms = 3;
+  // KServe v2 response body as JSON.
+  bytes response_json = 4;
+  string error = 5;
+}
+
+message Sample {
+  string trace_id = 1;
+  // W3C traceparent of the request at the gateway.
+  string traceparent = 2;
+  string model = 3;
+  google.protobuf.Timestamp received_at = 4;
+  // KServe v2 request body as JSON.
+  bytes request_json = 5;
+  // Set when the client body was not valid JSON.
+  string request_error = 6;
+  Exchange primary = 7;
+  // Present only for mirrored requests.
+  Exchange candidate = 8;
+}
+
+message IngestSamplesRequest {
+  repeated Sample samples = 1;
+}
+
+message IngestSamplesResponse {
+  int64 accepted = 1;
+  int64 rejected = 2;
+  int64 items = 3;
+  int64 windows_closed = 4;
+}
+
+message GetCanaryVerdictRequest {
+  string model = 1;
+  string candidate_version = 2;
+}
+
+message CanaryCheck {
+  string name = 1;
+  double value = 2;
+  double threshold = 3;
+  bool passed = 4;
+  bool sufficient_data = 5;
+  int64 samples = 6;
+  string detail = 7;
+}
+
+message CanaryVerdict {
+  enum Decision {
+    DECISION_UNSPECIFIED = 0;
+    DECISION_HOLD = 1;
+    DECISION_PROMOTE = 2;
+    DECISION_ROLLBACK = 3;
+  }
+  string model = 1;
+  string candidate_version = 2;
+  Decision decision = 3;
+  repeated CanaryCheck checks = 4;
+}
+
+message Incident {
+  int64 id = 1;
+  string model = 2;
+  string version = 3;
+  // contract | input_drift | output_drift
+  string kind = 4;
+  string severity = 5;
+  string status = 6;
+  string summary = 7;
+  int64 occurrences = 8;
+  google.protobuf.Timestamp opened_at = 9;
+  google.protobuf.Timestamp last_seen_at = 10;
+  string details_json = 11;
+}
+
+message ListIncidentsRequest {
+  string model = 1;
+  // "open", "resolved" or empty for all.
+  string status = 2;
+  int32 limit = 3;
+}
+
+message ListIncidentsResponse {
+  repeated Incident incidents = 1;
+}
